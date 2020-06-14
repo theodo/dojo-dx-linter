@@ -61,14 +61,30 @@ npx eslint ./src/**/*.ts
 
 L'un des problemes du projet est le manque de consistance entre les fichiers notammenent sur les strings.
 
-On va forcer les développeurs à utiliser des single quotes grace à ESLint. Pour cela, on va ajouter une regle: https://eslint.org/docs/rules/quotes
+On va forcer les développeurs à utiliser des double quotes grace à ESLint. Pour cela, on va ajouter une regle: https://eslint.org/docs/rules/quotes
 
-Ajoutons la regle dans le champ `rules` du fichier `.eslintrc`. On veut des single quote. `'quotes': ['error', 'single'],`
+Ajoutons la regle dans le champ `rules` du fichier `.eslintrc`. On veut des double quote. `'quotes': ['error', 'double'],`
 
 En lancant ESLint, on voit qu'il nous propose d'utiliser l'option `--fix` pour automatiquement corriger les erreurs !!
 
-### :twisted_rightwards_arrows: Merge conflicts
-On `master` branch:
-```shell
-git merge country-refacto
+## 2. Afficher les erreurs dans l'IDE
+
+On a vu qu'ESLint permet de détecter mais aussi corriger automatiquement des erreurs. Integrons maintenant ESLint dans notre IDE afin de ne plus avoir à utiliser le terminal.
+
+Tous les outils de formatage ou d'analyse statique de code peuvent être intégré à un IDE via des extensions ou des plugins.
+
+Installons si ce n'est pas déjà fait l'extension ESLint sur VSCode.
+
+Dans le projet, nous avons une configuration VSCode dans le fichier `.vscode/settings.json`. Modifions la afin d'activer ESLint.
+
+Nous pouvons aussi activer la correction automatique à a sauvegarde. Nous recommandons cette option afin de pouvoir formater le code à chaque sauvegarde.
+
+## 3. Integrer d'autres outils de formatage à ESLint
+
+On a vu qu'ESLint pouvait être personnalisée avec d'autres regles avec des plugins. On va maintenant utiliser l'outil prettier pour formatter notre code.
+
+```bash
+yarn add prettier -D
 ```
+
+Prettier est un outil avec un ensemble de regles de formatage préétablis. On peut toutefois personnaliser ces regles via un fichier de configuration `.prettierrc`. Dans notre cas, nous allons utiliser la configuration de base.
